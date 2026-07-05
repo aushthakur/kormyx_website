@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import PlatformFeatures from '../components/squarespace/PlatformFeatures';
 import GrowBusiness from '../components/squarespace/GrowBusiness';
+import AboutSnippet from '../components/AboutSnippet';
 import GettingStarted from '../components/squarespace/GettingStarted';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
@@ -19,6 +20,7 @@ const Home = () => {
       <Navbar />
       <main>
         <Hero />
+        <AboutSnippet />
         <PlatformFeatures />
         <GrowBusiness />
         <GettingStarted />
