@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, Navigate, Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import SEO from '../components/SEO';
 import { ArrowLeft, Clock, User, Tag } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -8,13 +9,54 @@ import { blogData } from '../data/blogData';
 
 const BlogPost = () => {
   const { id } = useParams();
-  const post = blogData[id];
+  const navigate = useNavigate();
+  const [post, setPost] = useState(blogData[id] || null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // If it's a hardcoded blog (ID 1-6), we already set it initially
+    if (blogData[id]) {
+      setLoading(false);
+      return;
+    }
+
+    // Otherwise, attempt to fetch from DB (MongoDB ObjectId)
+    const fetchDbBlog = async () => {
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const response = await axios.get(`${apiUrl}/api/blogs/${id}`);
+        const b = response.data;
+        setPost({
+          id: b._id,
+          title: b.title,
+          category: b.category,
+          author: b.author || 'Kormyx Editorial',
+          date: b.date || new Date(b.createdAt).toLocaleDateString(),
+          readTime: b.readTime,
+          description: b.description,
+          image: b.imageUrl ? `${apiUrl}${b.imageUrl}` : "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2074&auto=format&fit=crop",
+          // Map DB content directly
+          content: b.content
+        });
+      } catch (err) {
+        console.error("Failed to fetch blog post", err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchDbBlog();
   }, [id]);
 
-  if (!post) {
+  if (loading) {
+    return <div className="min-h-screen bg-[#050505] flex items-center justify-center text-white/50">Loading post...</div>;
+  }
+
+  if (error || !post) {
     return <Navigate to="/blog" replace />;
   }
 

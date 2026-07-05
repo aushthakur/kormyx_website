@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FinalCTA from '../components/FinalCTA';
@@ -54,9 +55,39 @@ const Blog = () => {
       category: "Web Development",
       readTime: "4 min read",
       excerpt: "Demystifying the website development process. Find out exactly what services, from wireframing to SEO optimization, you should expect from a top-tier agency.",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop"
     }
   ];
+
+  const [dbBlogs, setDbBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const fetchDbBlogs = async () => {
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const response = await axios.get(`${apiUrl}/api/blogs`);
+        // Map DB blogs to match the structure of hardcoded blogs
+        const formattedDbBlogs = response.data.map(b => ({
+          id: b._id, // MongoDB String ID
+          title: b.title,
+          category: b.category,
+          readTime: b.readTime,
+          excerpt: b.description,
+          image: b.imageUrl ? `${apiUrl}${b.imageUrl}` : "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2074&auto=format&fit=crop"
+        }));
+        setDbBlogs(formattedDbBlogs);
+      } catch (err) {
+        console.error("Error fetching dynamic blogs", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDbBlogs();
+  }, []);
+
+  const allBlogs = [...dbBlogs, ...blogPosts]; // DB blogs appear first
 
   return (
     <div className="bg-[#050505] min-h-screen text-white font-sans selection:bg-white/20">
@@ -82,51 +113,47 @@ const Blog = () => {
 
           {/* Blog Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <article 
-                key={post.id} 
-                className="group relative flex flex-col bg-[#0D0D0D] border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300 animate-fade-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Image */}
-                <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-white/90">{post.category}</span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex items-center text-xs text-white/40 mb-4">
-                    <Clock size={14} className="mr-1" />
-                    {post.readTime}
-                  </div>
-                  
-                  <h2 className="text-xl md:text-2xl font-medium mb-4 leading-snug group-hover:text-[#E8B84A] transition-colors">
-                    <Link to={`/blog/${post.id}`}>
-                      {post.title}
-                    </Link>
-                  </h2>
-                  
-                  <p className="text-sm text-white/60 leading-relaxed mb-8 flex-grow">
-                    {post.excerpt}
-                  </p>
-                  
-                  <Link 
-                    to={`/blog/${post.id}`} 
-                    className="inline-flex items-center text-sm font-bold uppercase tracking-widest hover:opacity-70 transition-opacity mt-auto"
-                  >
-                    Read Article <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </article>
-            ))}
+            {loading ? (
+                <div className="col-span-full text-center py-20 text-white/50">Loading articles...</div>
+              ) : (
+                allBlogs.map((post) => (
+                  <article key={post.id} className="group bg-[#0A0A0A] border border-white/10 overflow-hidden hover:border-white/30 transition-all duration-300">
+                    <div className="relative h-64 overflow-hidden">
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                      <img 
+                        src={post.image} 
+                        alt={post.title}
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute top-4 left-4 z-20">
+                        <span className="bg-white text-black text-xs font-bold uppercase tracking-widest px-3 py-1">
+                          {post.category}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="p-8">
+                      <div className="flex items-center gap-2 text-white/50 text-sm mb-4">
+                        <Clock size={14} />
+                        <span>{post.readTime}</span>
+                      </div>
+                      <h2 className="text-2xl font-light leading-tight mb-4 group-hover:text-gray-300 transition-colors">
+                        {post.title}
+                      </h2>
+                      <p className="text-white/60 font-light text-sm mb-8 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                      
+                      <Link 
+                        to={`/blog/${post.id}`}
+                        className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:gap-4 transition-all"
+                      >
+                        Read Article <ArrowRight size={16} />
+                      </Link>
+                    </div>
+                  </article>
+                ))
+              )}
           </div>
         </div>
       </main>
