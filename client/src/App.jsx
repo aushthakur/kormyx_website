@@ -12,6 +12,7 @@ import BrandPositioning from './pages/BrandPositioning';
 import ContentCreation from './pages/ContentCreation';
 import DigitalMarketing from './pages/DigitalMarketing';
 import PaidAdsSeo from './pages/PaidAdsSeo';
+import BlogPost from './pages/BlogPost';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/schedule" element={<Schedule />} />
       <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:id" element={<BlogPost />} />
       <Route path="/company/about" element={<About />} />
       <Route path="/services/saas-development" element={<SaasDevelopment />} />
       <Route path="/services/website-development" element={<WebDevelopment />} />
