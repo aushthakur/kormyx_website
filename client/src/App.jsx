@@ -5,6 +5,7 @@ import Schedule from './pages/Schedule';
 import DynamicPage from './pages/DynamicPage';
 import Blog from './pages/Blog';
 import About from './pages/About';
+import SaasDevelopment from './pages/SaasDevelopment';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/schedule" element={<Schedule />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/company/about" element={<About />} />
+      <Route path="/services/saas-development" element={<SaasDevelopment />} />
       {/* Catch-all route for all dynamically generated themed pages */}
       <Route path="/*" element={<DynamicPage />} />
     </Routes>
