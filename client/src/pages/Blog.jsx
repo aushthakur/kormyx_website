@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FinalCTA from '../components/FinalCTA';
+import SEO from '../components/SEO';
 import { ArrowRight, Clock } from 'lucide-react';
 
 const Blog = () => {
@@ -59,6 +60,12 @@ const Blog = () => {
 
   return (
     <div className="bg-[#050505] min-h-screen text-white font-sans selection:bg-white/20">
+      <SEO 
+        title="Blog | Kormyx"
+        description="Expert advice on digital marketing, web development, and scaling your business."
+        canonicalUrl="/blog"
+        breadcrumbs={[{ name: "Blog", url: "/blog" }]}
+      />
       <Navbar />
       
       <main className="pt-32 pb-24">
@@ -86,6 +93,7 @@ const Blog = () => {
                   <img 
                     src={post.image} 
                     alt={post.title}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
@@ -100,11 +108,11 @@ const Blog = () => {
                     {post.readTime}
                   </div>
                   
-                  <h3 className="text-xl md:text-2xl font-medium mb-4 leading-snug group-hover:text-[#E8B84A] transition-colors">
+                  <h2 className="text-xl md:text-2xl font-medium mb-4 leading-snug group-hover:text-[#E8B84A] transition-colors">
                     <Link to={`/blog/${post.id}`}>
                       {post.title}
                     </Link>
-                  </h3>
+                  </h2>
                   
                   <p className="text-sm text-white/60 leading-relaxed mb-8 flex-grow">
                     {post.excerpt}

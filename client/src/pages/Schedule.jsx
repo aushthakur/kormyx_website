@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScheduleModal from '../components/ScheduleModal';
+import SEO from '../components/SEO';
 import { Calendar } from 'lucide-react';
 
 const Schedule = () => {
@@ -9,6 +10,12 @@ const Schedule = () => {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans flex flex-col">
+      <SEO 
+        title="Schedule a Strategy Call | Kormyx"
+        description="Book a discovery call with Kormyx to discuss how our digital solutions can accelerate your growth."
+        canonicalUrl="/schedule"
+        breadcrumbs={[{ name: "Schedule", url: "/schedule" }]}
+      />
       <Navbar />
       <main className="flex-1 pt-32 pb-24">
         <div className="max-w-4xl mx-auto px-6 text-center mb-12">

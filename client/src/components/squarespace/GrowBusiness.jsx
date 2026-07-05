@@ -114,7 +114,7 @@ const GrowBusiness = () => {
 
         {/* Centered Mockup Image */}
         <div className={`absolute left-1/2 transform -translate-x-1/2 overflow-hidden rounded-xl shadow-2xl border border-white/10 top-[45%] w-[80%] md:w-[60%]`}>
-           <img src={content.mockupImage} alt={content.title} className="w-full h-auto object-cover" />
+           <img src={content.mockupImage} alt={content.title} loading="lazy" className="w-full h-auto object-cover" />
         </div>
 
         {/* Bottom Footer Area */}

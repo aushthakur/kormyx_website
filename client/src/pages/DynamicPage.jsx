@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SEO from '../components/SEO';
 
 const DynamicPage = () => {
   const location = useLocation();
@@ -20,6 +21,12 @@ const DynamicPage = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans flex flex-col selection:bg-white/20 selection:text-white">
+      <SEO 
+        title={`${title} | Kormyx`}
+        description={`Learn more about ${title} and how Kormyx can help you scale your business.`}
+        canonicalUrl={path}
+        breadcrumbs={[{ name: title, url: path }]}
+      />
       <Navbar />
       
       <main className="flex-1 flex flex-col pt-24 relative overflow-hidden">
