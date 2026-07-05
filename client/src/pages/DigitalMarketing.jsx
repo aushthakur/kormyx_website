@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ChevronDown, ChevronUp, TrendingUp, Users, Mail, Globe, BarChart2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -60,11 +60,11 @@ const DigitalMarketing = () => {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-white selection:text-black">
-      <Helmet>
-        <title>Omnichannel Digital Marketing | Kormyx</title>
-        <meta name="description" content="Kormyx engineers data-driven digital marketing campaigns. We scale revenue through integrated SEO, paid acquisition, and automation strategies." />
-        <link rel="canonical" href="https://kormyx.com/services/digital-marketing" />
-      </Helmet>
+      <SEO 
+        title="Omnichannel Digital Marketing | Kormyx"
+        description="Kormyx engineers data-driven digital marketing campaigns. We scale revenue through integrated SEO, paid acquisition, and automation strategies."
+        canonicalUrl="/services/digital-marketing"
+      />
 
       <Navbar />
 

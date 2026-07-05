@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ChevronDown, ChevronUp, Video, Camera, Type, PenTool } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -64,11 +64,11 @@ const ContentCreation = () => {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-white selection:text-black">
-      <Helmet>
-        <title>Premium Content Creation & Production | Kormyx</title>
-        <meta name="description" content="Kormyx produces cinematic video, high-end photography, and persuasive copywriting that captivates audiences and drives unprecedented engagement." />
-        <link rel="canonical" href="https://kormyx.com/services/content-creation" />
-      </Helmet>
+      <SEO 
+        title="Premium Content Creation & Production | Kormyx"
+        description="Kormyx produces cinematic video, high-end photography, and persuasive copywriting that captivates audiences and drives unprecedented engagement."
+        canonicalUrl="/services/content-creation"
+      />
 
       <Navbar />
 

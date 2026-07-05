@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ArrowLeft, Clock, User, Tag } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -20,15 +20,12 @@ const BlogPost = () => {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-white selection:text-black">
-      <Helmet>
-        <title>{post.title} | Kormyx</title>
-        <meta name="description" content={post.description} />
-        {/* AEO / SEO Optimization tags */}
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.description} />
-        <meta property="og:type" content="article" />
-        <link rel="canonical" href={`https://kormyx.com/blog/${id}`} />
-      </Helmet>
+      <SEO 
+        title={`${post.title} | Kormyx`}
+        description={post.description}
+        canonicalUrl={`/blog/${id}`}
+        ogType="article"
+      />
 
       <Navbar />
 

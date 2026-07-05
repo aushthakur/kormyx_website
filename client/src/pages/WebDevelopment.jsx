@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ChevronDown, ChevronUp, Link as LinkIcon, ExternalLink } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -132,11 +132,11 @@ const WebDevelopment = () => {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-white selection:text-black">
-      <Helmet>
-        <title>Premium Website Development Services | Kormyx</title>
-        <meta name="description" content="Kormyx engineers high-performance, visually stunning websites. From corporate platforms to complex e-commerce, we build for conversion and speed." />
-        <link rel="canonical" href="https://kormyx.com/services/website-development" />
-      </Helmet>
+      <SEO 
+        title="Premium Website Development | Kormyx"
+        description="Kormyx builds ultra-fast, high-converting websites using modern React architectures. We don't use templates. We engineer digital flagships."
+        canonicalUrl="/services/website-development"
+      />
 
       <Navbar />
 

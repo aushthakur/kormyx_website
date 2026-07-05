@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ChevronDown, ChevronUp, Search, PenTool, Target, Crosshair } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -63,11 +63,11 @@ const BrandPositioning = () => {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-white selection:text-black">
-      <Helmet>
-        <title>Brand Positioning Strategy | Kormyx</title>
-        <meta name="description" content="Kormyx crafts undeniable brand positioning strategies. We align your visual identity, messaging, and market presence to dominate your industry." />
-        <link rel="canonical" href="https://kormyx.com/services/brand-positioning" />
-      </Helmet>
+      <SEO 
+        title="Brand Positioning Strategy | Kormyx"
+        description="Kormyx crafts undeniable brand positioning strategies. We align your visual identity, messaging, and market presence to dominate your industry."
+        canonicalUrl="/services/brand-positioning"
+      />
 
       <Navbar />
 

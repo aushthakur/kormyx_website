@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ChevronDown, ChevronUp, MousePointerClick, Search, Target, Infinity } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -60,11 +60,11 @@ const PaidAdsSeo = () => {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-white selection:text-black">
-      <Helmet>
-        <title>Paid Ads & Technical SEO | Kormyx</title>
-        <meta name="description" content="Dominate the algorithms. Kormyx merges high-velocity Paid Advertising with compounding Technical SEO to monopolize search results and scale revenue." />
-        <link rel="canonical" href="https://kormyx.com/services/paid-ads-seo" />
-      </Helmet>
+      <SEO 
+        title="Paid Ads & Technical SEO | Kormyx"
+        description="Dominate the algorithms. Kormyx merges high-velocity Paid Advertising with compounding Technical SEO to monopolize search results and scale revenue."
+        canonicalUrl="/services/paid-ads-seo"
+      />
 
       <Navbar />
 

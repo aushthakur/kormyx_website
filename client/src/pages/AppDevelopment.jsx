@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { ChevronDown, ChevronUp, Smartphone, Layers, ShieldCheck, Zap } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -130,11 +130,11 @@ const AppDevelopment = () => {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-white selection:text-black">
-      <Helmet>
-        <title>Mobile App Development Services | Kormyx</title>
-        <meta name="description" content="Kormyx engineers iOS, Android, and cross-platform mobile applications designed for mass adoption, extreme performance, and intuitive UX." />
-        <link rel="canonical" href="https://kormyx.com/services/app-development" />
-      </Helmet>
+      <SEO 
+        title="Mobile App Development Services | Kormyx"
+        description="Kormyx engineers iOS, Android, and cross-platform mobile applications designed for mass adoption, extreme performance, and intuitive UX."
+        canonicalUrl="/services/app-development"
+      />
 
       <Navbar />
 
