@@ -264,6 +264,27 @@ app.post('/api/admin/blogs', authenticateToken, upload.single('image'), async (r
   }
 });
 
+// --- RENDER KEEP-ALIVE PING ---
+// Render free tier spins down after 15 mins of inactivity.
+// This hits a lightweight endpoint every 10 minutes (600,000ms) to keep it alive.
+app.get('/api/ping', (req, res) => {
+  res.status(200).send('Pong');
+});
+
+setInterval(() => {
+  const url = process.env.RENDER_EXTERNAL_URL 
+    ? `${process.env.RENDER_EXTERNAL_URL}/api/ping` 
+    : `http://localhost:${PORT}/api/ping`;
+
+  const client = url.startsWith('https') ? require('https') : require('http');
+  
+  client.get(url, (resp) => {
+    console.log(`[Keep-Alive] Ping successful - Status: ${resp.statusCode}`);
+  }).on("error", (err) => {
+    console.log(`[Keep-Alive] Ping failed: ${err.message}`);
+  });
+}, 600000); // 10 minutes
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
