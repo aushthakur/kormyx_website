@@ -36,7 +36,7 @@ const PlatformFeatures = () => {
     },
     {
       title: "Brand & Content Creation",
-      description: "Premium video editing, professional shoots, and influencer marketing to elevate your brand positioning.",
+      description: "High-quality video editing, professional shoots, and influencer marketing to elevate your brand positioning.",
       image: shootContentImg,
       overlay: null
     }

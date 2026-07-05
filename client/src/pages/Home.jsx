@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import PlatformFeatures from '../components/squarespace/PlatformFeatures';
 import GrowBusiness from '../components/squarespace/GrowBusiness';
 import GettingStarted from '../components/squarespace/GettingStarted';
+import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
         <PlatformFeatures />
         <GrowBusiness />
         <GettingStarted />
+        <FAQ />
       </main>
       <Footer />
     </div>
