@@ -11,7 +11,17 @@ const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
-  const isTransparentInitial = location.pathname === '/' || location.pathname === '/services/saas-development';
+  const transparentRoutes = [
+    '/',
+    '/services/saas-development',
+    '/services/website-development',
+    '/services/app-development',
+    '/services/brand-positioning',
+    '/services/content-creation',
+    '/services/digital-marketing',
+    '/services/paid-ads-seo'
+  ];
+  const isTransparentInitial = transparentRoutes.includes(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {

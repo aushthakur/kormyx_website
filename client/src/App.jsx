@@ -6,6 +6,12 @@ import DynamicPage from './pages/DynamicPage';
 import Blog from './pages/Blog';
 import About from './pages/About';
 import SaasDevelopment from './pages/SaasDevelopment';
+import WebDevelopment from './pages/WebDevelopment';
+import AppDevelopment from './pages/AppDevelopment';
+import BrandPositioning from './pages/BrandPositioning';
+import ContentCreation from './pages/ContentCreation';
+import DigitalMarketing from './pages/DigitalMarketing';
+import PaidAdsSeo from './pages/PaidAdsSeo';
 
 function App() {
   return (
@@ -15,6 +21,12 @@ function App() {
       <Route path="/blog" element={<Blog />} />
       <Route path="/company/about" element={<About />} />
       <Route path="/services/saas-development" element={<SaasDevelopment />} />
+      <Route path="/services/website-development" element={<WebDevelopment />} />
+      <Route path="/services/app-development" element={<AppDevelopment />} />
+      <Route path="/services/brand-positioning" element={<BrandPositioning />} />
+      <Route path="/services/content-creation" element={<ContentCreation />} />
+      <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+      <Route path="/services/paid-ads-seo" element={<PaidAdsSeo />} />
       {/* Catch-all route for all dynamically generated themed pages */}
       <Route path="/*" element={<DynamicPage />} />
     </Routes>

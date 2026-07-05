@@ -367,7 +367,7 @@ const SaasDevelopment = () => {
 
               <div className="mt-12 p-6 bg-black border border-white/10 text-center">
                  <p className="text-xs uppercase tracking-widest text-white/50 mb-2">Estimated Investment</p>
-                 <div className="text-3xl md:text-4xl lg:text-5xl font-light whitespace-nowrap overflow-hidden text-ellipsis">
+                 <div className="text-xl sm:text-2xl md:text-4xl font-light whitespace-nowrap">
                    {formatCurrency(estimatedCost.min)} - {formatCurrency(estimatedCost.max)}
                  </div>
               </div>
