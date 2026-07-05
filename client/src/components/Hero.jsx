@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Smartphone, Monitor, Globe, Download } from 'lucide-react';
-import { PopupButton } from 'react-calendly';
+import ScheduleModal from './ScheduleModal';
 
 const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -9,6 +9,7 @@ const Hero = () => {
   const [activeCard, setActiveCard] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const containerRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -107,12 +108,12 @@ const Hero = () => {
           
           {/* Mobile: Row 2 (One button) */}
           <div className="flex md:hidden w-full justify-center mt-3">
-            <PopupButton
-              url="https://calendly.com/acmesales"
-              rootElement={document.getElementById("root")}
-              text="Schedule a Meeting"
+            <button
+              onClick={() => setIsModalOpen(true)}
               className="w-full bg-white border border-white text-black px-6 sm:px-8 py-4 rounded-none text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors pointer-events-auto"
-            />
+            >
+              Schedule a Meeting
+            </button>
           </div>
 
           {/* Desktop: Original Button */}
@@ -190,6 +191,7 @@ const Hero = () => {
            );
         })}
       </div>
+      <ScheduleModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };

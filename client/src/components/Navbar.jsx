@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronUp, ArrowRight, Download, Menu, X } from 'lucide-react';
-import { PopupButton } from 'react-calendly';
+import ScheduleModal from './ScheduleModal';
 import logoWhite from '../assets/logowhite.svg';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
   const isTransparentInitial = location.pathname === '/';
@@ -75,11 +76,9 @@ const Navbar = () => {
             <Download size={16} /> Portfolio
           </a>
           <div className="hidden sm:block bg-white text-black px-6 py-3 rounded-sm text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
-            <PopupButton
-              url="https://calendly.com/acmesales"
-              rootElement={document.getElementById("root")}
-              text="Schedule a Meeting"
-            />
+            <button onClick={() => setIsModalOpen(true)}>
+              Schedule a Meeting
+            </button>
           </div>
           
           {/* Mobile Menu Toggle */}
@@ -228,14 +227,13 @@ const Navbar = () => {
           </div>
           
           <div className="mt-8 bg-white text-black p-4 text-center rounded-sm text-sm font-bold uppercase tracking-widest cursor-pointer">
-            <PopupButton
-              url="https://calendly.com/acmesales"
-              rootElement={document.getElementById("root")}
-              text="Schedule a Meeting"
-            />
+            <button onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }} className="w-full">
+              Schedule a Meeting
+            </button>
           </div>
         </div>
       </div>
+      <ScheduleModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </nav>
   );
 };
