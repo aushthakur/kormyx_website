@@ -167,7 +167,7 @@ const Footer = () => {
            <a href="#" className="text-xs text-white/60 hover:text-white transition-colors">Terms</a>
            <a href="#" className="text-xs text-white/60 hover:text-white transition-colors">Privacy</a>
            <a href="#" className="text-xs text-white/60 hover:text-white transition-colors">Security Measures</a>
-           <a href="#" className="text-xs text-white/60 hover:text-white transition-colors">Sitemap</a>
+           <a href="/sitemap.xml" className="text-xs text-white/60 hover:text-white transition-colors">Sitemap</a>
            <span className="text-xs text-white/40">&copy; 2003-{new Date().getFullYear()} Kormyx, Inc.</span>
         </div>
 
