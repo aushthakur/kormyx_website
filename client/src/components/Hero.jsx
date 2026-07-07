@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Smartphone, Monitor, Globe, Download } from 'lucide-react';
 import ScheduleModal from './ScheduleModal';
+import PortfolioPDF from '../assets/Portfolio_Kormyx.pdf';
 
 const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -101,7 +102,7 @@ const Hero = () => {
             <a href="#work" className="flex-1 flex items-center justify-center gap-1 sm:gap-2 bg-transparent border border-white text-white px-4 sm:px-6 py-4 rounded-none text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors pointer-events-auto text-center whitespace-nowrap">
               Current Projects <ArrowUpRight size={14} />
             </a>
-            <a href="#" download className="flex-1 flex items-center justify-center gap-1 sm:gap-2 bg-transparent border border-white text-white px-4 sm:px-6 py-4 rounded-none text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors pointer-events-auto text-center whitespace-nowrap">
+            <a href={PortfolioPDF} download="Portfolio_Kormyx.pdf" className="flex-1 flex items-center justify-center gap-1 sm:gap-2 bg-transparent border border-white text-white px-4 sm:px-6 py-4 rounded-none text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors pointer-events-auto text-center whitespace-nowrap">
               <Download size={14} /> Portfolio
             </a>
           </div>

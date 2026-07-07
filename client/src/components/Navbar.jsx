@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronUp, ArrowRight, Download, Menu, X } from 'lucide-react';
 import ScheduleModal from './ScheduleModal';
+import PortfolioPDF from '../assets/Portfolio_Kormyx.pdf';
 import logoWhite from '../assets/logowhite.svg';
 
 const Navbar = () => {
@@ -90,7 +91,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4 lg:gap-6">
-          <a href="#" download className="hidden md:flex items-center gap-2 text-sm font-semibold text-white hover:text-white/70 uppercase tracking-widest">
+          <a href={PortfolioPDF} download="Portfolio_Kormyx.pdf" className="hidden md:flex items-center gap-2 text-sm font-semibold text-white hover:text-white/70 uppercase tracking-widest">
             <Download size={16} /> Portfolio
           </a>
           <div className="hidden sm:block bg-white text-black px-6 py-3 rounded-sm text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors">
