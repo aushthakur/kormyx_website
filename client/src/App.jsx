@@ -14,11 +14,35 @@ import DigitalMarketing from './pages/DigitalMarketing';
 import PaidAdsSeo from './pages/PaidAdsSeo';
 import BlogPost from './pages/BlogPost';
 import AnalyticsTracker from './components/AnalyticsTracker';
+import ScheduleModal from './components/ScheduleModal';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [isGlobalModalOpen, setIsGlobalModalOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('openModal') === 'true') {
+      setIsGlobalModalOpen(true);
+    }
+  }, [location.search]);
+
+  const handleCloseModal = () => {
+    setIsGlobalModalOpen(false);
+    const params = new URLSearchParams(location.search);
+    if (params.get('openModal') === 'true') {
+      params.delete('openModal');
+      navigate({ search: params.toString() }, { replace: true });
+    }
+  };
+
   return (
     <>
       <AnalyticsTracker />
+      <ScheduleModal isOpen={isGlobalModalOpen} onClose={handleCloseModal} />
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/schedule" element={<Schedule />} />
