@@ -4,3 +4,4 @@ node_modules/
 dist/
 client/dist/
 build/
+email_template.html
