@@ -8,6 +8,13 @@ import { Calendar } from 'lucide-react';
 const Schedule = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('openModal') === 'true') {
+      setIsModalOpen(true);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans flex flex-col">
       <SEO 
