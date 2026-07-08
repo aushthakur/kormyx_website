@@ -107,20 +107,20 @@ const ScheduleModal = ({ isOpen, onClose }) => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto custom-scrollbar">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full max-w-5xl bg-[#050505] text-white border border-white/10 rounded-sm shadow-2xl flex flex-col md:flex-row overflow-hidden font-sans my-8 max-h-[90vh]"
+          className="relative w-full max-w-5xl bg-[#050505] text-white border border-white/10 rounded-sm shadow-2xl flex flex-col md:flex-row font-sans my-auto md:my-8 md:overflow-hidden md:max-h-[90vh]"
         >
-          <button onClick={onClose} className="absolute top-6 right-6 z-20 p-2 text-white/50 hover:text-white hover:bg-white/10 transition-colors">
+          <button onClick={onClose} className="absolute top-4 right-4 md:top-6 md:right-6 z-20 p-2 text-white/50 hover:text-white hover:bg-white/10 transition-colors bg-black/50 rounded-full md:bg-transparent md:rounded-none">
             <X size={24} />
           </button>
 
           {/* Left Panel: Branding & Details */}
-          <div className="md:w-5/12 bg-[#0A0A0A] p-8 md:p-12 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10">
+          <div className="hidden md:flex md:w-5/12 bg-[#0A0A0A] p-8 md:p-12 flex-col justify-between border-r border-white/10">
             <div>
               <h2 className="text-3xl md:text-4xl font-light tracking-tight mb-4">Let's discuss your next breakthrough.</h2>
               <p className="text-white/50 text-sm md:text-base leading-relaxed mb-8">
@@ -141,8 +141,16 @@ const ScheduleModal = ({ isOpen, onClose }) => {
             </div>
           </div>
 
+          {/* Mobile Header (replaces left panel on mobile) */}
+          <div className="md:hidden bg-[#0A0A0A] p-6 border-b border-white/10 pt-16">
+            <h2 className="text-2xl font-light tracking-tight mb-2">Let's discuss your next breakthrough.</h2>
+            <p className="text-white/50 text-sm leading-relaxed">
+              Schedule a one-on-one discovery call with our experts.
+            </p>
+          </div>
+
           {/* Right Panel: Form Area */}
-          <div className="md:w-7/12 p-8 md:p-12 relative h-full overflow-y-auto custom-scrollbar">
+          <div className="md:w-7/12 p-6 md:p-12 relative md:h-full md:overflow-y-auto custom-scrollbar">
             {status === 'success' ? (
               <motion.div 
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
