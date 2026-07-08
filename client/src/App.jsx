@@ -13,10 +13,13 @@ import ContentCreation from './pages/ContentCreation';
 import DigitalMarketing from './pages/DigitalMarketing';
 import PaidAdsSeo from './pages/PaidAdsSeo';
 import BlogPost from './pages/BlogPost';
+import AnalyticsTracker from './components/AnalyticsTracker';
 
 function App() {
   return (
-    <Routes>
+    <>
+      <AnalyticsTracker />
+      <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/schedule" element={<Schedule />} />
       <Route path="/blog" element={<Blog />} />
@@ -32,6 +35,7 @@ function App() {
       {/* Catch-all route for all dynamically generated themed pages */}
       <Route path="/*" element={<DynamicPage />} />
     </Routes>
+    </>
   );
 }
 
